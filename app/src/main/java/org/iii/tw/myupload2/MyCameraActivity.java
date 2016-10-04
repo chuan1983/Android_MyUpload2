@@ -3,16 +3,19 @@ package org.iii.tw.myupload2;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.media.CameraProfile;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 
 public class MyCameraActivity extends AppCompatActivity {
 
     private Camera camera;
+    private FrameLayout frame;
+    private CameraPreView preView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,16 @@ public class MyCameraActivity extends AppCompatActivity {
         Camera.Parameters params = camera.getParameters();
 //        camera.takePicture(new MyShutter(),null,new MyJpegCallback());
 //        camera.release();
+
+        frame = (FrameLayout) findViewById(R.id.activity_my_camera);
+        frame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        preView = new CameraPreView(this,camera);
+        frame.addView(preView);
     }
 //    private class MyShutter implements Camera.ShutterCallback{
 //        @Override
@@ -47,6 +60,10 @@ public class MyCameraActivity extends AppCompatActivity {
 //    }
 
     private int checkCameraNumber(){
+//            PackageManager packageManager = getPackageManager();
+//          if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+//
+//          }
         return Camera.getNumberOfCameras();
     }
 
