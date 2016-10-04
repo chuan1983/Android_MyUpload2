@@ -39,25 +39,25 @@ public class MyCameraActivity extends AppCompatActivity {
         frame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                camera.takePicture(new MyShutter(),null,new MyJpegCallback());
             }
         });
         preView = new CameraPreView(this,camera);
         frame.addView(preView);
     }
-//    private class MyShutter implements Camera.ShutterCallback{
-//        @Override
-//        public void onShutter() {
-//
-//        }
-//    }
-//
-//    private class MyJpegCallback implements Camera.PictureCallback{
-//        @Override
-//        public void onPictureTaken(byte[] data, Camera camera) {
-//
-//        }
-//    }
+    private class MyShutter implements Camera.ShutterCallback{
+        @Override
+        public void onShutter() {
+
+        }
+    }
+
+    private class MyJpegCallback implements Camera.PictureCallback{
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+
+        }
+    }
 
     private int checkCameraNumber(){
 //            PackageManager packageManager = getPackageManager();
