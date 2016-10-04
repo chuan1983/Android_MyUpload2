@@ -3,6 +3,7 @@ package org.iii.tw.myupload2;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.media.CameraProfile;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class MyCameraActivity extends AppCompatActivity {
+
+    private Camera camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,25 @@ public class MyCameraActivity extends AppCompatActivity {
                 Manifest.permission.RECORD_AUDIO);
         int num = Camera.getNumberOfCameras();
         Log.v("brad","Camera"+num);
+
+        camera = Camera.open();
+        Camera.Parameters params = camera.getParameters();
+//        camera.takePicture(new MyShutter(),null,new MyJpegCallback());
+//        camera.release();
     }
+//    private class MyShutter implements Camera.ShutterCallback{
+//        @Override
+//        public void onShutter() {
+//
+//        }
+//    }
+//
+//    private class MyJpegCallback implements Camera.PictureCallback{
+//        @Override
+//        public void onPictureTaken(byte[] data, Camera camera) {
+//
+//        }
+//    }
 
     private int checkCameraNumber(){
         return Camera.getNumberOfCameras();
